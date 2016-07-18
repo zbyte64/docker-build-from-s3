@@ -7,6 +7,9 @@ RUN apt-get install -y build-essential git libfuse-dev libcurl4-openssl-dev libx
 RUN apt-get install -y pkg-config libssl-dev
 ADD https://github.com/s3fs-fuse/s3fs-fuse/archive/v${S3FS_VERSION}.tar.gz /tmp/s3fs-fuse.tar.gz
 
+ADD ./build.sh /usr/local/bin/build.sh
+RUN chmod +x /usr/local/bin/build.sh
+
 WORKDIR /tmp
 
 RUN tar xvzf /tmp/s3fs-fuse.tar.gz
@@ -16,5 +19,4 @@ RUN ./configure --prefix=/usr
 RUN make
 RUN make install
 
-
-
+CMD ["build.sh"]
