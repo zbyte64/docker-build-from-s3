@@ -1,7 +1,5 @@
 #!/bin/bash
 
-wrapdocker
-
 #echo MYIDENTITY:MYCREDENTIAL > /etc/passwd-s3fs
 
 #do s3 mount
