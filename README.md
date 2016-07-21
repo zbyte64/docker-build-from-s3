@@ -45,3 +45,18 @@ Pushing To Registry
 Environment variables:
 
 - DOCKER_REGISTRY
+
+
+Yo Dawg
+=======
+
+An example of how to build this image from within itself:
+
+```
+docker run -it \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /path/to/docker-build-from-s3:/var/source-code \
+  -e DOCKER_IMAGE_NAME=build-from-s3 \
+  -e DOCKER_IMAGE_VERSION=latest \
+  build-from-s3
+```
