@@ -9,6 +9,14 @@ if [ $BUCKET_NAME ]; then
   git archive ${GIT_CHECKOUT} | tar -x -C /var/source-code
 fi
 
+if [ $GIT_TARBALL_URL ]; then
+  mkdir -p /tmp/target-code/.git
+  wget ${GIT_TARBALL_URL} /tmp/target-code/git-source.tar
+  tar -x /tmp/target-code/git-source.tar -C /tmp/target-code/.git
+  cd /tmp/target-code
+  git archive ${GIT_CHECKOUT} | tar -x -C /var/source-code
+fi
+
 
 #TODO support multiple tags
 if [ $DOCKER_REGISTRY ]; then

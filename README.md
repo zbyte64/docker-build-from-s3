@@ -23,6 +23,16 @@ Building From Volume
 Specify a volume for `/var/source-code` and have it host the target code base.
 
 
+Building From URL
+=================
+
+Downloads a tarball representing a git source tree.
+
+Environment variables:
+
+- GIT_TARBALL_URL
+
+
 Building From S3
 ================
 
