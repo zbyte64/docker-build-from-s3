@@ -1,20 +1,23 @@
 #!/bin/bash
 
 if [ $BUCKET_NAME ]; then
-  mkdir -p /tmp/target-code/.git
+  mkdir -p /var/source-code/.git
 
   #do s3 mount and export a git index
-  s3fs ${BUCKET_NAME}:${BUCKET_DIRECTORY} /tmp/target-code/.git -o retries=5,umask=0222
-  cd /tmp/target-code
-  git archive ${GIT_CHECKOUT} | tar -x -C /var/source-code
+  s3fs ${BUCKET_NAME}:${BUCKET_DIRECTORY} /var/source-code/.git -o retries=5,umask=0222
 fi
 
 if [ $GIT_TARBALL_URL ]; then
-  mkdir -p /tmp/target-code/.git
-  wget ${GIT_TARBALL_URL} /tmp/target-code/git-source.tar
-  tar -x /tmp/target-code/git-source.tar -C /tmp/target-code/.git
-  cd /tmp/target-code
-  git archive ${GIT_CHECKOUT} | tar -x -C /var/source-code
+  mkdir -p /var/source-code/.git
+  wget ${GIT_TARBALL_URL} /tmp/bare-git-tree.tar.gz
+  tar -x /tmp/bare-git-tree.tar.gz -C /var/source-code/.git
+  rm /tmp/bare-git-tree.tar.gz
+fi
+
+cd /var/source-code
+
+if [ $GIT_CHECKOUT ]; then
+  git checkout -f ${GIT_CHECKOUT}
 fi
 
 

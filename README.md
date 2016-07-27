@@ -26,7 +26,7 @@ Specify a volume for `/var/source-code` and have it host the target code base.
 Building From URL
 =================
 
-Downloads a tarball representing a git source tree.
+Downloads a tarball representing a bare git source tree.
 
 Environment variables:
 
