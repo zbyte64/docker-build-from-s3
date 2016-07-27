@@ -1,14 +1,11 @@
 #!/bin/bash
 
 if [ $BUCKET_NAME ]; then
-  mkdir -p /var/source-code/.git
-
   #do s3 mount and export a git index
   s3fs ${BUCKET_NAME}:${BUCKET_DIRECTORY} /var/source-code/.git -o retries=5,umask=0222
 fi
 
 if [ $GIT_TARBALL_URL ]; then
-  mkdir -p /var/source-code/.git
   wget ${GIT_TARBALL_URL} /tmp/bare-git-tree.tar.gz
   tar -x /tmp/bare-git-tree.tar.gz -C /var/source-code/.git
   rm /tmp/bare-git-tree.tar.gz

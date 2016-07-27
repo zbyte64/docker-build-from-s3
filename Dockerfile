@@ -18,7 +18,7 @@ RUN ./configure --prefix=/usr
 RUN make
 RUN make install
 
-RUN mkdir -p /var/source-code
+RUN mkdir -p /var/source-code/.git
 VOLUME /var/source-code
 
 CMD ["build.sh"]
