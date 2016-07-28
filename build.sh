@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ $BUCKET_NAME ]; then
   #do s3 mount and export a git index
