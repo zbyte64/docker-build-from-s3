@@ -7,11 +7,13 @@ fi
 
 if [ $GIT_TARBALL_URL ]; then
   wget ${GIT_TARBALL_URL} /tmp/bare-git-tree.tar.gz
-  tar -x /tmp/bare-git-tree.tar.gz -C /var/source-code/.git
+  tar -xf /tmp/bare-git-tree.tar.gz -C /var/source-code/.git
   rm /tmp/bare-git-tree.tar.gz
 fi
 
 cd /var/source-code
+
+git config --local --bool core.bare false
 
 if [ $GIT_CHECKOUT ]; then
   git checkout -f ${GIT_CHECKOUT}
