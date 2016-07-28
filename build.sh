@@ -20,6 +20,11 @@ if [ $GIT_CHECKOUT ]; then
   git checkout -f ${GIT_CHECKOUT}
 fi
 
+if [ ! -f /var/source-code/Dockerfile ]; then
+  echo "Dockerfile not found" 1>&2
+  exit 1
+fi
+
 
 #TODO support multiple tags
 if [ $DOCKER_REGISTRY ]; then
