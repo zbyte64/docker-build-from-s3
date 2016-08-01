@@ -7,7 +7,7 @@ if [ $BUCKET_NAME ]; then
 fi
 
 if [ $GIT_TARBALL_URL ]; then
-  wget ${GIT_TARBALL_URL} /tmp/bare-git-tree.tar.gz
+  wget ${GIT_TARBALL_URL} -O /tmp/bare-git-tree.tar.gz
   tar -xf /tmp/bare-git-tree.tar.gz -C /var/source-code/.git
   rm /tmp/bare-git-tree.tar.gz
 fi
